@@ -17,7 +17,7 @@ class MarkerItem extends React.Component {
         return (
             <div className="col">
                 <h4 className="text-primary">{this.props.name}</h4>
-                <p>{this.props.name}</p>
+                <p>{this.props.address}</p>
                 <p>Longtitude: {this.props.lat}<br/>
                     Latitude: {this.props.lng}</p>
 

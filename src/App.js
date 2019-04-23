@@ -10,8 +10,8 @@ class App extends React.Component {
 
         this.state = {
             markers: [
-                {'lat': -34.397, 'lng': 150.644, 'name': 'City 1'},
-                {'lat': -34.352, 'lng': 150.677, 'name': 'City 2'}
+                {'lat': -34.397, 'lng': 150.644, 'name': 'City 1', 'address': ''},
+                {'lat': -34.352, 'lng': 150.677, 'name': 'City 2', 'address': ''}
             ],
             isFormActive: false
         };
@@ -21,6 +21,8 @@ class App extends React.Component {
     }
 
     handleMarkerCreate(marker) {
+        console.log(marker);
+
         this.setState((state, props) => ({
             markers: [...state.markers, marker],
             isFormActive: false
