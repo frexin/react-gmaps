@@ -1,5 +1,6 @@
 import React from 'react';
 import MainMap from './components/MainMap'
+import MarkersManager from './components/MarkersManager'
 
 class App extends React.Component {
 
@@ -14,6 +15,12 @@ class App extends React.Component {
         }
     }
 
+    handleMarkerCreate(marker) {
+        this.setState((state, props) => ({
+            markers: [...state.markers, marker]
+        }));
+    }
+
     render() {
 
         return (
@@ -23,7 +30,7 @@ class App extends React.Component {
                         <MainMap markers={this.state.markers}/>
                     </div>
                     <div className="col">
-
+                        <MarkersManager createCallback={this.handleMarkerCreate}  />
                     </div>
                 </div>
             </div>

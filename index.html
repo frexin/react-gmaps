@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+        .container {
+            padding: 25px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col">
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary btn-lg">Add marker</button>
+            <hr>
+
+            <div class="marker-form">
+                <h3>Adding new marker</h3>
+
+                <form>
+                    <div class="form-group">
+                        <label for="addressName">Address name</label>
+                        <input type="text" class="form-control" id="addressName" placeholder="Berlin">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="latitude">Latitude</label>
+                            <input type="text" class="form-control" id="latitude" placeholder="52.520007">
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="longitude">Longitude</label>
+                            <input type="text" class="form-control" id="longitude" placeholder="13.404954">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
