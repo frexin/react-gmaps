@@ -11,13 +11,17 @@ class App extends React.Component {
             markers: [
                 {'lat': -34.397, 'lng': 150.644},
                 {'lat': -34.352, 'lng': 150.677}
-            ]
-        }
+            ],
+            isFormActive: false
+        };
+
+        this.handleMarkerCreate = this.handleMarkerCreate.bind(this);
     }
 
     handleMarkerCreate(marker) {
         this.setState((state, props) => ({
-            markers: [...state.markers, marker]
+            markers: [...state.markers, marker],
+            isFormActive: false
         }));
     }
 
@@ -30,7 +34,7 @@ class App extends React.Component {
                         <MainMap markers={this.state.markers}/>
                     </div>
                     <div className="col">
-                        <MarkersManager createCallback={this.handleMarkerCreate}  />
+                        <MarkersManager formActive={this.state.isFormActive} createCallback={this.handleMarkerCreate}  />
                     </div>
                 </div>
             </div>

@@ -15,10 +15,12 @@ class MarkerForm extends React.Component {
     }
 
     handleFormSubmit(event) {
+        let elements = event.target.elements;
+
         this.setState({
-           lat: event.target.elements.lat.value,
-           lng: event.target.elements.lng.value,
-           name: event.target.elements.name.value,
+           lat: parseFloat(elements.lat.value),
+           lng: parseFloat(elements.lng.value),
+           name: elements.name.value,
         }, () => {
             this.props.createCallback(this.state);
         });
