@@ -3,7 +3,7 @@ import React from 'react';
 
 import MarkerForm from './MarkerForm'
 
-ReactModal.setAppElement('#root')
+ReactModal.setAppElement('#root');
 
 class EditModal extends React.Component {
 

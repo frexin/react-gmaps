@@ -10,7 +10,7 @@ class MarkersList extends React.Component {
                 <div className="row">
                     {this.props.markers.map((marker, index) => (
                         <MarkerItem key={index.toString()} openCallback={this.props.openCallback}
-                                    deleteCallback={this.props.deleteCallback}
+                                    deleteCallback={this.props.deleteCallback} clickCallback={this.props.clickCallback}
                                     index={index} {...marker} />
                     ))}
                 </div>

@@ -13,12 +13,13 @@ class MainMap extends React.Component {
         this.map.panTo(coords);
     }
 
-    componentWillReceiveProps(nextProps, nextContext) {
-        console.log('componentWillReceiveProps', this.props);
-    }
-
     componentDidUpdate(prevProps, prevState, snapshot) {
-        const lastMarker = this.props.markers[this.props.markers.length - 1];
+        let lastMarker = this.props.markers[this.props.markers.length - 1];
+
+        if (this.props.mapCenter !== prevProps.mapCenter) {
+            lastMarker = this.props.mapCenter;
+        }
+
         this.panMapToCoordinates(lastMarker);
     }
 
@@ -36,10 +37,7 @@ class MainMap extends React.Component {
                         height: "400px",
                         width: "100%"
                     }}
-                    center={{
-                        lat: -3.745,
-                        lng: -38.523
-                    }}
+                    center={this.props.mapCenter}
                 >
                     {this.props.markers.map((marker, index) => (
                         <Marker key={index.toString()} position={marker} />

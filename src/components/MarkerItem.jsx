@@ -4,19 +4,15 @@ class MarkerItem extends React.Component {
 
     constructor(props) {
         super(props);
-
-        // this.handleDelete = this.handleDelete.bind(this);
-    }
-
-    handleDelete(one, two) {
-        console.log(one, two);
     }
 
     render() {
 
         return (
             <div className="col">
-                <h4 className="text-primary">{this.props.name}</h4>
+                <h4 className="text-primary">
+                    <a href="#" onClick={() => this.props.clickCallback(this.props.index)}>{this.props.name}</a>
+                </h4>
                 <p>{this.props.address}</p>
                 <p>Longtitude: {this.props.lat}<br/>
                     Latitude: {this.props.lng}</p>

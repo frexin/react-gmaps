@@ -9,6 +9,7 @@ class App extends React.Component {
         super(props);
 
         this.state = {
+            mapCenter: {lat: -3.745, lng: -38.523},
             markers: [
                 {'lat': -34.397, 'lng': 150.644, 'name': 'City 1', 'address': '', 'uid': '1'},
                 {'lat': -34.352, 'lng': 150.677, 'name': 'City 2', 'address': '', 'uid': '2'}
@@ -23,6 +24,7 @@ class App extends React.Component {
         this.handleMarkerDelete = this.handleMarkerDelete.bind(this);
         this.handleMarkerOpen   = this.handleMarkerOpen.bind(this);
         this.handleFormClear    = this.handleFormClear.bind(this);
+        this.handleMarkerClick  = this.handleMarkerClick.bind(this);
     }
 
     handleMarkerSave(marker) {
@@ -43,6 +45,14 @@ class App extends React.Component {
     handleMarkerDelete(markerIndex) {
         this.setState((state, props) => ({
             markers: this.state.markers.filter((item, index) => index !== markerIndex)
+        }));
+    }
+
+    handleMarkerClick(index) {
+        const selectedMarker = this.state.markers[index];
+
+        this.setState((state) => ({
+            mapCenter: {lat: selectedMarker.lat, lng: selectedMarker.lng}
         }));
     }
 
@@ -85,13 +95,13 @@ class App extends React.Component {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                        <MainMap markers={this.state.markers}/>
+                        <MainMap mapCenter={this.state.mapCenter} markers={this.state.markers}/>
                     </div>
                     <div className="col">
                         <MarkersManager formActive={this.state.isFormActive} formData={this.state.formData}
                                         saveCallback={this.handleMarkerSave} clearCallback={this.handleFormClear}  />
                         <MarkersList openCallback={this.handleMarkerOpen} deleteCallback={this.handleMarkerDelete}
-                                     markers={this.state.markers}/>
+                                     markers={this.state.markers} clickCallback={this.handleMarkerClick} />
                     </div>
                 </div>
             </div>
