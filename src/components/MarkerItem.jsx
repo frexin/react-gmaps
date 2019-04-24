@@ -22,9 +22,10 @@ class MarkerItem extends React.Component {
                     Latitude: {this.props.lng}</p>
 
                 <div className="btn-group" role="group">
-                    <button type="button" onClick={(e) => this.props.deleteCallback(this.props.index)}
+                    <button type="button" onClick={() => this.props.deleteCallback(this.props.index)}
                             className="btn btn-danger">Delete</button>
-                    <button type="button" className="btn btn-primary">Edit</button>
+                    <button type="button" onClick={() => this.props.openCallback(this.props.index)}
+                            className="btn btn-primary">Edit</button>
                 </div>
             </div>
         )

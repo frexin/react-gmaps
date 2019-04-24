@@ -9,7 +9,8 @@ class MarkersList extends React.Component {
             <div className="markers-list">
                 <div className="row">
                     {this.props.markers.map((marker, index) => (
-                        <MarkerItem key={index.toString()} deleteCallback={this.props.deleteCallback}
+                        <MarkerItem key={index.toString()} openCallback={this.props.openCallback}
+                                    deleteCallback={this.props.deleteCallback}
                                     index={index} {...marker} />
                     ))}
                 </div>

@@ -8,7 +8,8 @@ class MarkersManager extends React.Component {
         super(props);
 
         this.state = {
-            isFormActive: props.formActive
+            isFormActive: props.formActive,
+            formData: props.formData
         };
 
         this.handleAddButton = this.handleAddButton.bind(this);
@@ -20,6 +21,16 @@ class MarkersManager extends React.Component {
         }));
     }
 
+    componentWillReceiveProps(nextProps, nextContext) {
+        this.setState((state, props) => ({
+            isFormActive: props.formActive
+        }));
+
+        if (nextProps.hasOwnProperty('formData')) {
+            this.setState(() => ({formData: nextProps.formData}));
+        }
+    }
+
     render() {
 
         return (
@@ -27,7 +38,8 @@ class MarkersManager extends React.Component {
                 <button type="button" onClick={this.handleAddButton} className="btn btn-primary btn-lg">Add marker</button>
                 <hr/>
 
-                <MarkerForm createCallback={this.props.createCallback} isOpen={this.state.isFormActive}/>
+                <MarkerForm saveCallback={this.props.saveCallback} formData={this.state.formData}
+                            isOpen={this.state.isFormActive}/>
             </div>
         )
     }
