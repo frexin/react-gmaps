@@ -6,15 +6,12 @@ class MarkerForm extends React.Component {
     constructor(props) {
         super(props);
 
-        this.state = {
-            lat: '', lng: '', name: '', address: '', uid: ''
-        };
+        this.state = this.getDefaultData();
 
         Geocode.setApiKey("AIzaSyAvoHHTrf1HzpqKiYpsr8HBT7y2P_xQMIQ");
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleAddressComplete = this.handleAddressComplete.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
     handleAddressComplete(e) {
@@ -32,14 +29,23 @@ class MarkerForm extends React.Component {
         );
     }
 
+    getDefaultData() {
+        return {
+            lat: '', lng: '', name: '', address: '', uid: ''
+        };
+    }
+
     componentWillReceiveProps(nextProps, nextContext) {
-        if (nextProps.hasOwnProperty('formData')) {
+        if (nextProps.formData === null) {
+            this.setState(() => this.getDefaultData());
+        }
+        else {
             this.setState(() => nextProps.formData);
         }
     }
 
-    handleInputChange(event) {
-        this.setState({value: event.target.value});
+    componentDidMount() {
+        this.setState(() => this.props.formData);
     }
 
     handleFormSubmit(event) {
@@ -55,8 +61,8 @@ class MarkerForm extends React.Component {
         });
 
         event.preventDefault();
+        event.target.reset();
     }
-
 
     getClassName() {
         let hide = this.props.isOpen ? '' : ' d-none';
@@ -69,46 +75,41 @@ class MarkerForm extends React.Component {
 
         return (
             <div className={this.getClassName()}>
-                <h3>Adding new marker</h3>
-
                 <form onSubmit={this.handleFormSubmit}>
                     <div className="form-group">
                         <label htmlFor="title">Title</label>
-                        <input type="text" className="form-control" value={this.state.name} name="name" id="title"
-                        onChange={this.handleInputChange}
+                        <input type="text" className="form-control" defaultValue={this.state.name} name="name" id="title"
                         />
                     </div>
                     <div className="form-group">
                         <label htmlFor="addressName">Address</label>
                         <input type="text" onBlur={this.handleAddressComplete} className="form-control" name="address"
-                               id="addressName" onChange={this.handleInputChange}
-                               value={this.state.address} />
+                               id="addressName"
+                               defaultValue={this.state.address} />
                     </div>
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="latitude">Latitude</label>
-                            <input type="text" className="form-control" name="lat" id="latitude" value={this.state.lat}
-                                   onChange={this.handleInputChange} />
+                            <input type="text" className="form-control" name="lat" id="latitude" defaultValue={this.state.lat}
+                                    />
                         </div>
                         <div className="form-group col-md-6">
                             <label htmlFor="longitude">Longitude</label>
-                            <input type="text" className="form-control" name="lng" id="longitude" value={this.state.lng}
-                                   onChange={this.handleInputChange} />
+                            <input type="text" className="form-control" name="lng" id="longitude" defaultValue={this.state.lng}
+                                   />
                         </div>
                     </div>
 
-                    <input type="hidden" name="uid" value={this.state.uid}  />
+                    <input type="hidden" name="uid" defaultValue={this.state.uid}  />
                     <button type="submit" className="btn btn-primary">Save</button>
                 </form>
             </div>
         )
-
     }
 
     static defaultProps = {
         isOpen: false
     }
-
 }
 
 export default MarkerForm

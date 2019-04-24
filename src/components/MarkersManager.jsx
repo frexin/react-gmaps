@@ -1,5 +1,6 @@
 import React from 'react';
 import MarkerForm from './MarkerForm'
+import EditModal from './EditModal'
 
 
 class MarkersManager extends React.Component {
@@ -38,7 +39,9 @@ class MarkersManager extends React.Component {
                 <button type="button" onClick={this.handleAddButton} className="btn btn-primary btn-lg">Add marker</button>
                 <hr/>
 
-                <MarkerForm saveCallback={this.props.saveCallback} formData={this.state.formData}
+                <EditModal saveCallback={this.props.saveCallback} clearCallback={this.props.clearCallback} formData={this.state.formData}
+                           open={this.props.formData !== null} />
+                <MarkerForm saveCallback={this.props.saveCallback} formData={this.props.formData}
                             isOpen={this.state.isFormActive}/>
             </div>
         )

@@ -17,15 +17,25 @@ class App extends React.Component {
             formData: null
         };
 
-        this.handleMarkerSave = this.handleMarkerSave.bind(this);
+        this.lastMarkerIndex = null;
+
+        this.handleMarkerSave   = this.handleMarkerSave.bind(this);
         this.handleMarkerDelete = this.handleMarkerDelete.bind(this);
         this.handleMarkerOpen   = this.handleMarkerOpen.bind(this);
+        this.handleFormClear    = this.handleFormClear.bind(this);
     }
 
     handleMarkerSave(marker) {
-        console.log(marker);
+        if (marker.uid) {
+            this.markerUpdate(this.lastMarkerIndex, marker);
+        }
+        else {
+            this.markerCreate(marker);
+        }
+    }
 
-        this.setState((state, props) => ({
+    handleFormClear() {
+        this.setState(() => ({
             formData: null
         }));
     }
@@ -46,21 +56,26 @@ class App extends React.Component {
         });
 
         this.setState((state, props) => ({
-            markers: updatedMarkers
+            markers: updatedMarkers,
+            formData: null,
         }));
     }
 
     markerCreate(marker) {
+        marker.uid = this.state.markers.length + 1;
+
         this.setState((state, props) => ({
             markers: [...state.markers, marker],
-            isFormActive: false
+            isFormActive: false,
+            formData: null
         }));
     }
 
     handleMarkerOpen(markerIndex) {
+        this.lastMarkerIndex = markerIndex;
+
         this.setState((state, props) => ({
             formData: state.markers[markerIndex],
-            isFormActive: true
         }));
     }
 
@@ -74,7 +89,7 @@ class App extends React.Component {
                     </div>
                     <div className="col">
                         <MarkersManager formActive={this.state.isFormActive} formData={this.state.formData}
-                                        saveCallback={this.handleMarkerSave}/>
+                                        saveCallback={this.handleMarkerSave} clearCallback={this.handleFormClear}  />
                         <MarkersList openCallback={this.handleMarkerOpen} deleteCallback={this.handleMarkerDelete}
                                      markers={this.state.markers}/>
                     </div>
