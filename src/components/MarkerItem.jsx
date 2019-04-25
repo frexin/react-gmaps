@@ -2,16 +2,12 @@ import React from 'react';
 
 class MarkerItem extends React.Component {
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
 
         return (
             <div className="col">
                 <h4 className="text-primary">
-                    <a href="#" onClick={() => this.props.clickCallback(this.props.index)}>{this.props.name}</a>
+                    <a href="# " onClick={() => this.props.clickCallback(this.props.index)}>{this.props.name}</a>
                 </h4>
                 <p>{this.props.address}</p>
                 <p><b>Long:</b> {this.props.lat}<br/>

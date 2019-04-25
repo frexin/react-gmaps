@@ -8,7 +8,7 @@ class MarkerForm extends React.Component {
 
         this.state = this.getDefaultData();
 
-        Geocode.setApiKey("AIzaSyAL3U6qoZFG-zRPHk2kd2Icr7U0lDeVgFE");
+        Geocode.setApiKey(process.env.REACT_APP_GMAPS_KEY);
 
         this.handleFormSubmit = this.handleFormSubmit.bind(this);
         this.handleAddressComplete = this.handleAddressComplete.bind(this);

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default axios.create({
-    baseURL: 'http://medwing/',
+    baseURL: process.env.REACT_APP_API_URL,
     url: '/markers',
     headers: {'Accept' : 'application/json'},
     transformResponse: [function (data) {

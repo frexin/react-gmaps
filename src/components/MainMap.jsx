@@ -5,12 +5,10 @@ class MainMap extends React.Component {
 
     map = null;
 
-    constructor(props) {
-        super(props);
-    }
-
     panMapToCoordinates(coords) {
-        this.map.panTo(coords);
+        if (this.map) {
+            this.map.panTo(coords);
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -26,7 +24,7 @@ class MainMap extends React.Component {
     render() {
 
         return (
-            <LoadScript id="script-loader" googleMapsApiKey="AIzaSyAL3U6qoZFG-zRPHk2kd2Icr7U0lDeVgFE" {...this.props}>
+            <LoadScript id="script-loader" googleMapsApiKey={process.env.REACT_APP_GMAPS_KEY} {...this.props}>
                 <GoogleMap
                     id='main-map'
                     zoom={8}
