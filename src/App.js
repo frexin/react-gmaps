@@ -1,4 +1,6 @@
 import React from 'react';
+import API from './Api'
+
 import MainMap from './components/MainMap'
 import MarkersManager from './components/MarkersManager'
 import MarkersList from './components/MarkersList'
@@ -10,13 +12,18 @@ class App extends React.Component {
 
         this.state = {
             mapCenter: {lat: -3.745, lng: -38.523},
-            markers: [
-                {'lat': -34.397, 'lng': 150.644, 'name': 'City 1', 'address': '', 'uid': '1'},
-                {'lat': -34.352, 'lng': 150.677, 'name': 'City 2', 'address': '', 'uid': '2'}
-            ],
+            markers: [],
             isFormActive: false,
             formData: null
         };
+
+        API.get('/markers').then(res => {
+            const markers = res.data.data;
+
+            this.setState((res) => ({
+                markers: markers
+            }));
+        });
 
         this.lastMarkerIndex = null;
 

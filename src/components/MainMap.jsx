@@ -26,7 +26,7 @@ class MainMap extends React.Component {
     render() {
 
         return (
-            <LoadScript id="script-loader" googleMapsApiKey="AIzaSyAaE9Ofwn52HHf_6xyeHB_3rUY_Usb7YAs" {...this.props}>
+            <LoadScript id="script-loader" googleMapsApiKey="AIzaSyAL3U6qoZFG-zRPHk2kd2Icr7U0lDeVgFE" {...this.props}>
                 <GoogleMap
                     id='main-map'
                     zoom={8}
