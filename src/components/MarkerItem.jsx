@@ -9,9 +9,9 @@ class MarkerItem extends React.Component {
                 <h4 className="text-primary">
                     <a href="# " onClick={() => this.props.clickCallback(this.props.index)}>{this.props.name}</a>
                 </h4>
-                <p>{this.props.address}</p>
-                <p><b>Long:</b> {this.props.lat}<br/>
-                    <b>Lat:</b> {this.props.lng}</p>
+                <p className="addrName">{this.props.address}</p>
+                <p><b>Long:</b> <span className="lng">{this.props.lng}</span><br/>
+                    <b>Lat:</b> <span className="lat">{this.props.lat}</span></p>
 
                 <div className="btn-group" role="group">
                     <button type="button" onClick={() => this.props.deleteCallback(this.props.id)}

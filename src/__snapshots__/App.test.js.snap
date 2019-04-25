@@ -1,0 +1,154 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Marker Form render correctly MarkerItem component 1`] = `
+<div
+  className="marker-form d-none"
+>
+  <form
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="title"
+      >
+        Title
+      </label>
+      <input
+        className="form-control"
+        defaultValue="Test Item"
+        id="title"
+        name="name"
+        type="text"
+      />
+    </div>
+    <div
+      className="form-group"
+    >
+      <label
+        htmlFor="addressName"
+      >
+        Address
+      </label>
+      <input
+        className="form-control"
+        defaultValue="test addr"
+        id="addressName"
+        name="address"
+        onBlur={[Function]}
+        type="text"
+      />
+    </div>
+    <div
+      className="form-row"
+    >
+      <div
+        className="form-group col-md-6"
+      >
+        <label
+          htmlFor="latitude"
+        >
+          Latitude
+        </label>
+        <input
+          className="form-control"
+          defaultValue="55.8304"
+          id="latitude"
+          name="lat"
+          type="text"
+        />
+      </div>
+      <div
+        className="form-group col-md-6"
+      >
+        <label
+          htmlFor="longitude"
+        >
+          Longitude
+        </label>
+        <input
+          className="form-control"
+          defaultValue="49.066"
+          id="longitude"
+          name="lng"
+          type="text"
+        />
+      </div>
+    </div>
+    <input
+      defaultValue="1"
+      name="id"
+      type="hidden"
+    />
+    <button
+      className="btn btn-primary"
+      type="submit"
+    >
+      Save
+    </button>
+  </form>
+</div>
+`;
+
+exports[`Marker Item render correctly MarkerItem component 1`] = `
+<div
+  className="col"
+>
+  <h4
+    className="text-primary"
+  >
+    <a
+      href="# "
+      onClick={[Function]}
+    >
+      Test Item
+    </a>
+  </h4>
+  <p
+    className="addrName"
+  >
+    test addr
+  </p>
+  <p>
+    <b>
+      Long:
+    </b>
+     
+    <span
+      className="lng"
+    >
+      49.066
+    </span>
+    <br />
+    <b>
+      Lat:
+    </b>
+     
+    <span
+      className="lat"
+    >
+      55.8304
+    </span>
+  </p>
+  <div
+    className="btn-group"
+    role="group"
+  >
+    <button
+      className="btn btn-danger"
+      onClick={[Function]}
+      type="button"
+    >
+      Delete
+    </button>
+    <button
+      className="btn btn-primary"
+      onClick={[Function]}
+      type="button"
+    >
+      Edit
+    </button>
+  </div>
+</div>
+`;

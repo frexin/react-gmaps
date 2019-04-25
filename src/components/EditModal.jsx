@@ -3,8 +3,6 @@ import React from 'react';
 
 import MarkerForm from './MarkerForm'
 
-ReactModal.setAppElement('#root');
-
 class EditModal extends React.Component {
 
 
@@ -14,6 +12,9 @@ class EditModal extends React.Component {
         this.state = {
             open: props.open
         };
+
+        ReactModal.setAppElement('#root');
+
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);

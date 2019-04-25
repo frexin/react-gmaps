@@ -24,7 +24,9 @@ class MarkerForm extends React.Component {
         Geocode.fromAddress(address).then(
             response => {
                 let {lat, lng} = response.results[0].geometry.location;
-                this.setState({lat: lat, lng: lng});
+                let coords = {lat: lat, lng: lng};
+
+                this.setState(coords);
             }
         );
     }
