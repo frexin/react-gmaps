@@ -18,7 +18,7 @@ class App extends React.Component {
         };
 
         API.get('/markers').then(res => {
-            const markers = res.data.data;
+            const markers = res.data;
 
             this.setState((res) => ({
                 markers: markers
@@ -35,7 +35,7 @@ class App extends React.Component {
     }
 
     handleMarkerSave(marker) {
-        if (marker.uid) {
+        if (marker.id) {
             this.markerUpdate(this.lastMarkerIndex, marker);
         }
         else {
@@ -49,10 +49,12 @@ class App extends React.Component {
         }));
     }
 
-    handleMarkerDelete(markerIndex) {
-        this.setState((state, props) => ({
-            markers: this.state.markers.filter((item, index) => index !== markerIndex)
-        }));
+    handleMarkerDelete(markerId) {
+        API.delete('/markers/' + markerId).then(res => {
+            this.setState((state, props) => ({
+                markers: this.state.markers.filter((item) => item.id !== markerId)
+            }));
+        });
     }
 
     handleMarkerClick(index) {
@@ -72,20 +74,24 @@ class App extends React.Component {
             return newData;
         });
 
-        this.setState((state, props) => ({
-            markers: updatedMarkers,
-            formData: null,
-        }));
+        API.put('/markers/' + newData.id, newData).then(res => {
+            this.setState((state, props) => ({
+                markers: updatedMarkers,
+                formData: null
+            }));
+        });
     }
 
     markerCreate(marker) {
-        marker.uid = this.state.markers.length + 1;
+        API.post('/markers', marker).then(res => {
+            marker.id = res.data.id;
 
-        this.setState((state, props) => ({
-            markers: [...state.markers, marker],
-            isFormActive: false,
-            formData: null
-        }));
+            this.setState((state, props) => ({
+                markers: [...state.markers, marker],
+                isFormActive: false,
+                formData: null
+            }));
+        });
     }
 
     handleMarkerOpen(markerIndex) {

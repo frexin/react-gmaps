@@ -7,6 +7,20 @@ export default axios.create({
     transformResponse: [function (data) {
         let rawData = JSON.parse(data);
 
-        return data.data;
+        if (Array.isArray(rawData.data)) {
+            rawData.data.map((item) => {
+                if (item.hasOwnProperty('lat')) {
+                    item.lat = parseFloat(item.lat);
+                }
+
+                if (item.hasOwnProperty('lng')) {
+                    item.lng = parseFloat(item.lng);
+                }
+
+                return item;
+            })
+        }
+
+        return rawData.data;
     }],
 });

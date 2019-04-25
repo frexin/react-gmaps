@@ -31,7 +31,7 @@ class MarkerForm extends React.Component {
 
     getDefaultData() {
         return {
-            lat: '', lng: '', name: '', address: '', uid: ''
+            lat: '', lng: '', name: '', address: '', id: ''
         };
     }
 
@@ -55,7 +55,7 @@ class MarkerForm extends React.Component {
         let lng = parseFloat(elements.lng.value);
 
         this.setState({
-            name: elements.name.value, lat: lat, lng: lng, address: elements.address.value, uid: elements.uid.value
+            name: elements.name.value, lat: lat, lng: lng, address: elements.address.value, id: elements.id.value
         }, () => {
             this.props.saveCallback(this.state);
         });
@@ -100,7 +100,7 @@ class MarkerForm extends React.Component {
                         </div>
                     </div>
 
-                    <input type="hidden" name="uid" defaultValue={this.state.uid}  />
+                    <input type="hidden" name="id" defaultValue={this.state.id}  />
                     <button type="submit" className="btn btn-primary">Save</button>
                 </form>
             </div>
