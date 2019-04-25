@@ -12,6 +12,10 @@ class MainMap extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
+        if (!this.props.markers.length) {
+            return;
+        }
+
         let lastMarker = this.props.markers[this.props.markers.length - 1];
 
         if (this.props.mapCenter !== prevProps.mapCenter) {

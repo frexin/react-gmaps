@@ -11,7 +11,10 @@ class App extends React.Component {
         super(props);
 
         this.state = {
-            mapCenter: {lat: -3.745, lng: -38.523},
+            mapCenter: {
+                lat: parseFloat(process.env.REACT_APP_DEF_LAT),
+                lng: parseFloat(process.env.REACT_APP_DEF_LNG)
+            },
             markers: [],
             isFormActive: false,
             formData: null

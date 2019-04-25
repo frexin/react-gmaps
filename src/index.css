@@ -50,3 +50,7 @@ code {
   border: none;
   background-color: transparent;
 }
+
+#marker-manager {
+  margin-bottom: 30px;
+}
